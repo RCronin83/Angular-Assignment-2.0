@@ -2,8 +2,10 @@
   'use strict';
 
   angular.module('inventory')
-    .controller('InventoryController', InventoryController);
-
+  .controller('InventoryController', InventoryController);
+  /**
+   * exports an array of objects containing inventory data
+   */
   function InventoryController(){
     let vm = this;
 
@@ -21,6 +23,19 @@
       { "id": 533, "name": "eggs", "price": 5, "quantity": 12, "color": "brown", "discount": 1 },
       { "id": 683, "name": "pillow", "price": 27, "quantity": 10, "color": "black", "discount": 12 }
     ];
+
+    vm.tax = 0.0575;
+    /**
+     * Determines final price of items with discounts and tax included
+     * @param  {Object} item tax and discount values
+     * @return {Number}     Final price
+     */
+    vm.totalPrice = function totalPrice(item){
+      let price = item.price - item.discount;
+      let tax = price * vm.tax;
+      return price + tax;
+
+    };
 
   }
 }());
