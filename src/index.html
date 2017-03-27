@@ -3,6 +3,8 @@
 <head>
   <meta charset="utf-8">
   <title>Shopular with Angular!</title>
+  <link rel='stylesheet'href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'
+  integrity='sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u' crossorigin='anonymous'>
 </head>
 <body>
   <header>
@@ -10,7 +12,7 @@
   </header>
   <main>
 
-    <table ng-controller='InventoryController as inventoryCtrl'>
+    <table class='table table-striped col-lg-8' ng-controller='InventoryController as inventoryCtrl'>
       <tr>
         <th>Name</th>
         <th>Price</th>
@@ -19,7 +21,7 @@
       </tr>
       <tr ng-repeat='inventory in inventoryCtrl.inventory'>
         <td>{{inventory.name}}</td>
-        <td>{{inventory.price}}</td>
+        <td><img src='/images/sale_icon.png' ng-hide='inventory.discount !== 0'>{{inventoryCtrl.totalPrice(inventory)| currency: "$" : 2}}</td>
         <td>{{inventory.quantity}}</td>
         <td>{{inventory.color}}</td>
       </tr>
