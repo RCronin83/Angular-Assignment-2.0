@@ -17,4 +17,10 @@ td {
 h1 {
   text-align: center; }
 
+[ng-cloak] {
+  display: none; }
+
+input.ng-invalid.ng-touched {
+  border: 1px solid #ff0000; }
+
 /*# sourceMappingURL=style.css.map */
