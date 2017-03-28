@@ -4,11 +4,12 @@
   angular.module('inventory')
   .controller('InventoryController', InventoryController);
   /**
-   * Constructs an Inventory Controller that can calculate the final price of an item
+   * Constructs an Inventory Controller
    */
   function InventoryController(){
     let vm = this;
 
+    vm.newItem = {};
     vm.inventory = [
       { "id": 2957, "name": "widget", "price": 32, "quantity": 203, "color": "red", "discount": 31 },
       { "id": 89274, "name": "golf club", "price": 98, "quantity": 10, "color": "black", "discount": 0 },
@@ -35,6 +36,29 @@
       let tax = price * vm.tax;
       return price + tax;
 
+    };
+
+    /**
+     * Adds new items to the table
+     * @param  {Object} item Should have 'name', 'price', 'quantity', 'color', 'discount'
+     * @return {Void}
+     */
+    vm.addItem = function addItem(item) {
+      console.log(item);
+      if (typeof(item) !== 'object' || typeof(item.name) !== 'string'
+          || typeof(item.price) !== 'number' || typeof(item.quantity) !== 'number'
+          || typeof(item.color) !== 'string' || typeof(item.discount) !== 'number') {
+          return;
+      }
+      vm.inventory.push({
+        name: item.name,
+        price: item.price,
+        quantity: item.quantity,
+        color: item.color,
+        discount: item.discount
+      });
+
+      vm.newItem = {};
     };
 
   }
