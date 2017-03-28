@@ -4,7 +4,7 @@
   angular.module('inventory')
   .controller('InventoryController', InventoryController);
   /**
-   * exports an array of objects containing inventory data
+   * Constructs an Inventory Controller that can calculate the final price of an item
    */
   function InventoryController(){
     let vm = this;
