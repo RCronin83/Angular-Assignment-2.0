@@ -4,15 +4,6 @@
   <meta charset="utf-8">
   <title>Shopular with Angular!</title>
   <link href='/style.css' rel='stylesheet'>
-  <style>
-  /* select ALL tags that have the ng-cloak attribute (regardless of the value of that attribute) */
-  [ng-cloak] {
-      display: none;
-  }
-  input.ng-invalid.ng-touched {
-      border: 1px solid #ff0000;
-  }
-  </style>
 </head>
 <body>
   <header>
@@ -54,11 +45,26 @@
         name='discount'
         min='0'
         placeholder='Discount'
+        required
         ng-model='inventoryCtrl.newItem.discount'>
       <input
         type='submit' value='Add New Inventory'>
+      <p ng-cloak ng-show='additem.name.$touched && !additem.name.$valid'>
+        You must add a name!
+      </p>
+      <p ng-cloak ng-show='additem.price.$touched && !additem.price.$valid'>
+        You must add a price!
+      </p>
+      <p ng-cloak ng-show='additem.quantity.$touched && !additem.quantity.$valid'>
+        You must add a quantity!
+      </p>
+      <p ng-cloak ng-show='additem.color.$touched && !additem.color.$valid'>
+        You must specify a color!
+      </p>
+      <p ng-cloak ng-show='additem.discount.$touched && !additem.discount.$valid'>
+        You must add a discount! If no discount available, add 0!
+      </p>
     </form>
-
     <table>
       <tr>
         <th>Name</th>
@@ -66,7 +72,7 @@
         <th>Quantity</th>
         <th>Color</th>
       </tr>
-      <tr ng-repeat='inventory in inventoryCtrl.inventory'>
+      <tr ng-cloak ng-repeat='inventory in inventoryCtrl.inventory | orderBy:"price"'>
         <td>{{inventory.name}}</td>
         <td>{{inventoryCtrl.totalPrice(inventory)| currency: "$" : 2}}<img src='/images/sale_icon.png' ng-hide='inventory.discount !== 0'></td>
         <td>{{inventory.quantity}}</td>
