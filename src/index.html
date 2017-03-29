@@ -28,12 +28,12 @@
         required
         ng-model='inventoryCtrl.newItem.price'>
       <input
-       type='number'
-       name='quantity'
-       min='0'
-       placeholder='Quantity'
-       required
-       ng-model='inventoryCtrl.newItem.quantity'>
+        type='number'
+        name='quantity'
+        min='0'
+        placeholder='Quantity'
+        required
+        ng-model='inventoryCtrl.newItem.quantity'>
       <input
         type='text'
         name='color'
@@ -66,23 +66,28 @@
       </p>
     </form>
     <table>
-      <tr>
-        <th>Name</th>
-        <th>Price</th>
-        <th>Quantity</th>
-        <th>Color</th>
-      </tr>
-      <tr ng-cloak ng-repeat='inventory in inventoryCtrl.inventory | orderBy:"price"'>
-        <td>{{inventory.name}}</td>
-        <td>{{inventoryCtrl.totalPrice(inventory)| currency: "$" : 2}}<img src='/images/sale_icon.png' ng-hide='inventory.discount !== 0'></td>
-        <td>{{inventory.quantity}}</td>
-        <td>{{inventory.color}}</td>
-      </tr>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Color</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-cloak ng-repeat='inventory in inventoryCtrl.inventory | orderBy:"price"'>
+          <td>{{inventory.name}}</td>
+          <td>{{inventoryCtrl.totalPrice(inventory)| currency: "$" : 2}}<img src='/images/sale_icon.png' ng-show='inventory.discount > 0'></td>
+          <td>{{inventory.quantity}}</td>
+          <td>{{inventory.color}}</td>
+        </tr>
+      </tbody>
     </table>
   </main>
   <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js'></script>
   <script src='/js/inventory.module.js'></script>
   <script src='/js/inventory.controller.js'></script>
+  <script src='/js/item.service.js'></script>
   <footer>Assignment completed by Ryan Cronin</footer>
 </body>
 </html>
