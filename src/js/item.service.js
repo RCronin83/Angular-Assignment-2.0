@@ -3,12 +3,14 @@
 
   angular.module('inventory').factory('ItemService', ItemService);
 
-  ItemService.$inject = ['$location'];
-
-  function ItemService($location){
+  function ItemService(){
     let inventory = JSON.parse(localStorage.getItem('inventory')) || [];
 
-
+    /**
+     * Adds an item to the inventory database
+     * @param {Object} item Should have 'name', 'price', 'quantity', 'color', 'discount'
+     * @return {Void}
+     */
     function addItem(item) {
       item.price = Number(item.price);
       item.quantity = Number(item.quantity);
@@ -33,9 +35,12 @@
         color: item.color,
         discount: item.discount
       });
-      console.log(inventory);
       localStorage.setItem('inventory', angular.toJson(inventory));
     }
+    /**
+     * Gets all the items in the inventory
+     * @return {Object} A collection of items
+     */
     function getAllItems(){
       return inventory;
 
