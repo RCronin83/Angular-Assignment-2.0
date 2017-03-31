@@ -32,13 +32,12 @@
       expect(InventoryController.inventory).to.be.an('array');
       expect(InventoryController.addItem).to.be.a('function');
       expect(InventoryController.changeSort).to.be.a('function');
-      expect(InventoryController.totalPrice).to.be.a('function')
+      expect(InventoryController.totalPrice).to.be.a('function');
       expect(InventoryController.tax).to.be.a('number');
     });
     it('Should call the addItem function when adding an item', function(){
       InventoryController.addItem({});
       expect(mockItemService.addItem.numTimesCalled).to.equal(1);
-      
     });
   });
 
