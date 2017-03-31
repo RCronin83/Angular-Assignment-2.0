@@ -10,6 +10,8 @@
   */
   function InventoryController(ItemService){
     let vm = this;
+    vm.sortType = 'price';
+    vm.sortReverse = false;
     vm.newItem = {};
     vm.inventory = ItemService.getAllItems();
 
@@ -27,14 +29,22 @@
     };
 
     /**
-    * Adds new items to the inventory array
-    * @param  {Object} item Should have 'name', 'price', 'quantity', 'color', 'discount'
-    * @return {Void}
-    */
+     * Adds items to the 'View' using ItemService and clears the newItem Object
+     * @param {Object} item [description]
+     */
     vm.addItem = function addItem(item) {
-      console.log('in controller addItem:', item);
       ItemService.addItem(item);
       vm.newItem = {};
+    };
+    /**
+     * Changes the sorting of table data
+     * @param  {[type]} sortField [description]
+     * @return {[type]}           [description]
+     */
+    vm.changeSort = function changeSort(sortField) {
+      console.log('hello');
+     vm.sortType = sortField;
+     vm.sortReverse = !vm.sortReverse;
     };
 
   }
